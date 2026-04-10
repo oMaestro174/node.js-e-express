@@ -28,7 +28,7 @@ Este repositório contém todo o material de apoio para as aulas, incluindo apos
 
 ## Gabaritos
 
-As soluções para os laboratórios estão na pasta `gabaritos`. Tente resolver os exercícios antes de consultar as respostas!
+As soluções para os laboratórios estarão na pasta `gabaritos`. Tente resolver os exercícios antes de consultar as respostas!
 
 ---
 
