@@ -2,7 +2,7 @@
 
 ## 📌 Sobre o Projeto
 
-Este projeto foi desenvolvido na disciplina de **Desenvolvimento Back-end com Node.js e Express**.
+Este projeto foi desenvolvido na disciplina de **Desenvolvimento Back-end*.
 
 A aplicação consiste em uma **API REST em Node.js com Express** para gerenciamento de produtos.
 
