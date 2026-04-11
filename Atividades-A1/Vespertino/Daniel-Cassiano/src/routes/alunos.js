@@ -21,8 +21,8 @@ rt.post('/', (req, res) =>{
     return res.status(400).json({erro: "Nome é obrigatório"})
   }
 
-  const newA = addAluno(nome)
-  res.status(201).json(newA)
+  const newAluno = addAluno(nome)
+  res.status(201).json(newAluno)
 })
 
 //put
