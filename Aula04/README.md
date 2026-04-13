@@ -150,9 +150,11 @@ app.listen(3000);
 
 ### Middleware de Autenticação Simples
 
-A autenticação verifica se a requisição pode seguir para uma rota protegida. Um modelo didático é usar um token estático enviado em um cabeçalho como `x-access-token`.
+A autenticação verifica se a requisição pode seguir para uma rota protegida. Um modelo didático é usar um token estático enviado em um cabeçalho.
 
-#### Exemplo 5 — Middleware com token fixo
+#### Exemplo 5 — Middleware com header `x-access-token`
+
+Este é um exemplo simples, usando um cabeçalho customizado.
 
 ```js
 const express = require("express");
@@ -184,7 +186,105 @@ app.listen(3000);
 **Como testar:**
 
 - **Requisição sem token para `/admin`:** Deve retornar `401 Unauthorized`.
-- **Requisição com token para `/admin`:** Adicione o Header `x-access-token` com o valor `meu-token-secreto`. Deve retornar `200 OK`.
+- **Requisição com token para `/admin`:** No Postman, adicione o Header `x-access-token` com o valor `meu-token-secreto`. Deve retornar `200 OK`.
+
+#### Exemplo 6 — Middleware com `Authorization` (Bearer Token)
+
+O padrão mais comum para enviar tokens é usar o cabeçalho `Authorization` com o formato `Bearer <token>`.
+
+```js
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+const autenticarBearer = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+
+  if (!authHeader) {
+    return res.status(401).json({ mensagem: "Token não fornecido." });
+  }
+
+  // O header vem no formato "Bearer <token>".
+  // Fazemos o split para pegar apenas o token.
+  const parts = authHeader.split(" ");
+
+  if (parts.length !== 2) {
+    return res.status(401).json({ mensagem: "Erro no formato do token." });
+  }
+
+  const [scheme, token] = parts;
+
+  if (!/^Bearer$/i.test(scheme)) {
+    return res.status(401).json({ mensagem: "Token mal formatado." });
+  }
+
+  // Em um cenário real, aqui você validaria o token (ex: com JWT)
+  if (token === "meu-token-secreto-bearer") {
+    next(); // Token válido, pode seguir
+  } else {
+    res.status(401).json({ mensagem: "Token inválido." });
+  }
+};
+
+app.get("/vendas", autenticarBearer, (req, res) => {
+  res.json({ mensagem: "Área de vendas, acesso protegido por Bearer Token." });
+});
+
+app.listen(3000);
+```
+
+**Como testar:**
+
+- **Requisição sem token para `/vendas`:** Deve retornar `401 Unauthorized`.
+- **Requisição com token para `/vendas`:** No Postman, vá na aba **Authorization**, selecione **Bearer Token** e cole `meu-token-secreto-bearer` no campo **Token**. A requisição deve retornar `200 OK`.
+
+### Como testar rotas com token no Postman
+
+Para testar uma rota protegida por token no Postman, você precisa adicionar o token no cabeçalho (_header_) da requisição.
+
+1.  **Abra a requisição**: No Postman, selecione a requisição que você quer testar (por exemplo, `GET /admin`).
+2.  **Vá para a aba "Headers"**: Abaixo da URL da requisição, clique na aba **Headers**.
+3.  **Adicione o cabeçalho**:
+    - No campo `KEY`, digite o nome do cabeçalho que sua API espera (por exemplo, `x-access-token`).
+    - No campo `VALUE`, cole o valor do token (por exemplo, `meu-token-secreto`).
+4.  **Envie a requisição**: Clique em **Send**.
+
+Se o token estiver correto, a API retornará `200 OK`. Caso contrário, retornará `401 Unauthorized`.
+
+Outra forma comum é usar a aba **Authorization**:
+
+1.  Selecione o tipo **Bearer Token**.
+2.  Cole o token no campo **Token**.
+    - _Observação: Isso adicionará o header `Authorization` com o valor `Bearer [seu-token]`. Ajuste sua API se for usar este padrão._
+
+### Como testar rotas com token no Navegador (sem Postman)
+
+Você também pode testar a rota protegida diretamente no navegador, usando o Console das Ferramentas de Desenvolvedor (F12).
+
+1.  Abra uma aba qualquer no seu navegador e pressione **F12**.
+2.  Vá para a aba **Console**.
+3.  Cole o código abaixo e pressione **Enter**.
+
+Este exemplo testa a rota `/vendas`, que espera um `Bearer Token`.
+// Este código é executado no NAVEGADOR, não no servidor.
+// O .then() é usado para processar a resposta da requisição (Promise).
+// Não confunda com o next() do Express, que é usado no lado do servidor.
+
+```javascript
+fetch("http://localhost:3000/vendas", {
+  method: "GET",
+  headers: {
+    Authorization: "Bearer meu-token-secreto-bearer",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Erro:", error));
+```
+
+- Se o token estiver correto, o console exibirá: `{ "mensagem": "Área de vendas, acesso protegido por Bearer Token." }`.
+- Se o token estiver errado ou ausente, você verá um erro `401` e a mensagem de token inválido.
 
 ---
 
