@@ -23,3 +23,5 @@ npm-debug.log*
 
 /Assets
 /Praticando-Assincronia
+# VS Code Workspace file
+*.code-workspace
