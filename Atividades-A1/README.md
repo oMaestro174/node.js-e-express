@@ -26,50 +26,38 @@ Antes de começar, é recomendado revisar:
 
 Siga os passos abaixo para garantir que sua atividade seja enviada corretamente.
 
-### 1. Clonar o repositório
+### **Contribuindo com Fork e Pull Request (Obrigatório)**
 
-Se você já clonou o repositório, pule esta etapa.
+Para garantir um processo de revisão organizado, todas as entregas devem ser feitas através de um **Fork** do repositório principal, seguido por um **Pull Request**. Este é o fluxo de trabalho padrão para contribuir com projetos no GitHub.
 
-```bash
-git clone https://github.com/oMaestro174/node.js-e-express.git
-cd node.js-e-express
-```
+**Passo a passo:**
 
-### 2. Criar sua branch de trabalho
+1.  **Faça o Fork:** No topo da página do repositório original, clique no botão "Fork". Isso criará uma cópia do repositório na sua própria conta do GitHub.
 
-Use seu nome completo para criar a branch.
+2.  **Clone o seu Fork:** Clone o repositório que você acabou de forkar para a sua máquina local.
 
-```bash
-git checkout -b "Seu Nome Completo"
-```
+    ```bash
+    git clone https://github.com/SEU-USUARIO/node.js-e-express.git
+    cd node.js-e-express
+    ```
 
-### 3. Criar sua pasta de atividade
+3.  **Crie sua Branch:** Crie uma branch específica para a sua atividade.
 
-Escolha **apenas um** dos comandos abaixo, de acordo com o seu turno, e **substitua `"Seu Nome Completo"`** pelo seu nome.
+    ```bash
+    git checkout -b "seu-nome-completo"
+    ```
 
-**Alunos da Tarde (Vespertino):**
+4.  **Desenvolva sua Atividade:** Crie sua pasta e arquivos de atividade conforme as orientações abaixo.
 
-```bash
-mkdir -p "Atividades-A1/Vespertino/Seu Nome Completo"
-```
+5.  **Commit e Push para o seu Fork:** Após finalizar, envie as alterações para o _seu_ repositório (fork).
 
-**Alunos da Noite (Noturno):**
+    ```bash
+    git add .
+    git commit -m "A1: Atividade de [Seu Nome Completo] - [Seu Turno]"
+    git push origin "seu-nome-completo"
+    ```
 
-```bash
-mkdir -p "Atividades-A1/Noturno/Seu Nome Completo"
-```
-
-Agora, coloque todos os arquivos da sua atividade dentro dessa pasta.
-
-### 4. Commitar e enviar
-
-Após finalizar sua atividade, envie para o repositório.
-
-```bash
-git add .
-git commit -m "A1: Atividade de [Seu Nome Completo] - [Seu Turno]"
-git push origin "Seu Nome Completo"
-```
+6.  **Abra um Pull Request:** Volte para a página do seu fork no GitHub. Você verá um aviso para "Compare & pull request". Clique nele, revise suas alterações e abra o pull request para o repositório original.
 
 ## Nível 1 — Básico
 
