@@ -54,7 +54,7 @@ Recomendamos o **DBeaver** por ser gratuito, de código aberto e compatível com
     - **Senha**: A senha que você definiu durante a instalação do PostgreSQL.
 5.  Clique em "Testar Conexão" para verificar se tudo está correto. Se funcionar, clique em "Finalizar".
 
-#### 2. Criar o Banco de Dados `task_manager_db`
+#### 2. Criar o Banco de Dados `task_manager`
 
 Agora que estamos conectados ao servidor PostgreSQL, vamos criar o banco de dados específico para nossa aplicação.
 
@@ -62,25 +62,25 @@ Agora que estamos conectados ao servidor PostgreSQL, vamos criar o banco de dado
 2.  Digite o seguinte comando SQL e execute-o (clicando no ícone de play laranja ou usando `Ctrl+Enter`):
 
     ```sql
-    CREATE DATABASE task_manager_db;
+    CREATE DATABASE task_manager;
     ```
 
-3.  Após a execução, você pode precisar atualizar a lista de bancos de dados. Clique com o botão direito na conexão e selecione "Atualizar". O `task_manager_db` deve aparecer na lista.
+3.  Após a execução, você pode precisar atualizar a lista de bancos de dados. Clique com o botão direito na conexão e selecione "Atualizar". O `task_manager` deve aparecer na lista.
 
 ### Parte 3: Criando as Tabelas `users` e `tasks`
 
 Agora, vamos nos conectar ao novo banco de dados e criar nossas tabelas.
 
-#### 1. Reconectar ao Banco `task_manager_db`
+#### 1. Reconectar ao Banco `task_manager`
 
 É uma boa prática criar uma nova conexão no DBeaver diretamente para o seu banco de dados de desenvolvimento.
 
-1.  Crie uma nova conexão PostgreSQL como antes, mas desta vez, no campo **Banco de Dados**, digite `task_manager_db`.
+1.  Crie uma nova conexão PostgreSQL como antes, mas desta vez, no campo **Banco de Dados**, digite `task_manager`.
 2.  Isso garante que todos os scripts que você executar a partir de agora serão aplicados ao banco de dados correto.
 
 #### 2. Executar o Script de Criação de Tabelas
 
-1.  Abra um novo Editor SQL para a conexão com `task_manager_db`.
+1.  Abra um novo Editor SQL para a conexão com `task_manager`.
 2.  Copie e cole o script SQL abaixo no editor. Este script cria as tabelas `users` e `tasks` com as colunas e relacionamentos que definimos.
 
     ```sql
@@ -118,7 +118,7 @@ Agora, vamos nos conectar ao novo banco de dados e criar nossas tabelas.
 
 #### 3. Verificar a Criação das Tabelas
 
-1.  No painel "Navegador de Banco de Dados", navegue pela sua conexão: `task_manager_db` -> `Schemas` -> `public` -> `Tabelas`.
+1.  No painel "Navegador de Banco de Dados", navegue pela sua conexão: `task_manager` -> `Schemas` -> `public` -> `Tabelas`.
 2.  Você deve ver as tabelas `users` и `tasks` listadas.
 3.  Clique duas vezes em cada tabela para ver suas colunas, tipos de dados e outras propriedades.
 
@@ -149,19 +149,61 @@ SELECT * FROM tasks;
 
 -- Listar as tarefas de um usuário específico
 SELECT * FROM tasks WHERE user_id = 1;
+```
 
--- Listar tarefas com seus respectivos usuários (usando JOIN)
+#### 3. Praticando com JOINs
+
+Agora, vamos usar `JOIN` para combinar dados das duas tabelas.
+
+```sql
+-- INNER JOIN: Listar tarefas com os nomes dos seus respectivos usuários
+-- Retornará apenas tarefas que têm um usuário associado.
 SELECT
-    tasks.title,
+    tasks.title AS task_title,
     tasks.status,
+    users.name AS user_name,
+    users.email
+FROM
+    tasks
+INNER JOIN
+    users ON tasks.user_id = users.id;
+
+-- LEFT JOIN: Listar todos os usuários e suas tarefas
+-- Incluirá usuários que não têm nenhuma tarefa.
+INSERT INTO users (name, email, password) VALUES ('Bob', 'bob@example.com', 'senha456');
+
+SELECT
+    users.name AS user_name,
+    tasks.title AS task_title
+FROM
+    users
+LEFT JOIN
+    tasks ON users.id = tasks.user_id;
+
+-- RIGHT JOIN: Listar todas as tarefas e seus usuários
+-- Em nosso modelo, toda tarefa deve ter um usuário, então o resultado
+-- será igual ao do INNER JOIN. Mas é bom para praticar a sintaxe.
+SELECT
+    tasks.title AS task_title,
     users.name AS user_name
 FROM
     tasks
-JOIN
+RIGHT JOIN
     users ON tasks.user_id = users.id;
+
+-- Filtrando com JOIN: Listar apenas as tarefas de 'Alice'
+SELECT
+    tasks.title,
+    tasks.status
+FROM
+    tasks
+INNER JOIN
+    users ON tasks.user_id = users.id
+WHERE
+    users.name = 'Alice';
 ```
 
-#### 3. UPDATE: Atualizando dados
+#### 4. UPDATE: Atualizando dados
 
 ```sql
 -- Atualizar o status de uma tarefa
@@ -195,7 +237,7 @@ SELECT * FROM tasks;
 
 ## O que será observado
 
-- A criação bem-sucedida do banco de dados `task_manager_db`.
+- A criação bem-sucedida do banco de dados `task_manager`.
 - A correta criação das tabelas `users` e `tasks` com todas as colunas, tipos e restrições (chaves primárias e estrangeiras).
 - O diagrama de modelagem entregue como parte da atividade complementar.
 

@@ -165,6 +165,36 @@ graph LR
 
 PostgreSQL é um sistema de banco de dados relacional. Usamos tabelas, colunas e chaves (primárias e estrangeiras) para modelar os dados.
 
+### 3.2.1 Tipos de Dados no PostgreSQL
+
+O PostgreSQL é conhecido por seu sistema de tipos robusto e extensível. Compreender os tipos de dados é fundamental para modelar o banco de dados de forma correta e otimizada.
+
+**Tipos de Dados Comuns (Padrão SQL):**
+
+| Categoria     | Tipo            | Descrição                                 | Exemplo                             |
+| :------------ | :-------------- | :---------------------------------------- | :---------------------------------- |
+| **Numéricos** | `INTEGER`       | Números inteiros.                         | `42`                                |
+|               | `NUMERIC(p, s)` | Números decimais com precisão exata.      | `NUMERIC(10, 2)` para `99999999.99` |
+|               | `FLOAT`         | Números de ponto flutuante (aproximados). | `3.14159`                           |
+| **Texto**     | `VARCHAR(n)`    | String com tamanho máximo variável.       | `VARCHAR(255)`                      |
+|               | `TEXT`          | String com tamanho ilimitado.             | `'Uma longa descrição...'`          |
+| **Data/Hora** | `DATE`          | Armazena apenas a data.                   | `'2024-10-26'`                      |
+|               | `TIME`          | Armazena apenas a hora.                   | `'14:30:00'`                        |
+|               | `TIMESTAMP`     | Armazena data e hora.                     | `'2024-10-26 14:30:00'`             |
+| **Lógicos**   | `BOOLEAN`       | Verdadeiro (`true`) ou falso (`false`).   | `true`                              |
+
+**Tipos de Dados Específicos e Avançados do PostgreSQL:**
+
+O que realmente diferencia o PostgreSQL são seus tipos de dados nativos que simplificam o desenvolvimento e melhoram a performance.
+
+| Categoria         | Tipo            | Descrição                                                                                            | Exemplo de Uso                                                     |
+| :---------------- | :-------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| **Estruturado**   | `JSON`/`JSONB`  | Armazena dados no formato JSON. **JSONB** é binário, mais rápido para consultas e suporta indexação. | Guardar configurações de um usuário ou metadados de um produto.    |
+| **Array**         | `TIPO[]`        | Permite que uma coluna armazene um array de valores de um mesmo tipo.                                | `tags TEXT[]` para armazenar uma lista de tags em um post de blog. |
+| **Geométrico**    | `POINT`, `LINE` | Tipos para dados geométricos e espaciais.                                                            | Armazenar coordenadas geográficas (`POINT(lat, lon)`).             |
+| **Identificador** | `UUID`          | Identificador Único Universal, ideal para chaves primárias em sistemas distribuídos.                 | `a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11`                             |
+| **Intervalo**     | `INT4RANGE`     | Representa um intervalo de inteiros.                                                                 | `INT4RANGE(1, 10)` para representar "de 1 a 10".                   |
+
 ### 3.3 Modelagem de Dados Relacional
 
 Identificamos entidades e seus atributos. Por exemplo, uma tabela `users` e uma `tasks`, onde cada tarefa pertence a um usuário.
