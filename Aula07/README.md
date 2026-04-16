@@ -1,5 +1,14 @@
 # Aula 07: Princípios de APIs RESTful
 
+## Material Complementar
+
+Antes de começar, recomendamos assistir a estes vídeos para uma excelente introdução visual aos conceitos de API e REST:
+
+- **[O que é API? REST e RESTful?](https://youtu.be/ghTrp1x_1As)** - Uma visão geral clara e concisa.
+- **[APIs REST e RESTful - Entenda de uma vez por todas](https://youtu.be/S7MduKwvVGk)** - Um aprofundamento nos conceitos.
+
+---
+
 ## Objetivos da Aula
 
 - Compreender os princípios fundamentais da arquitetura REST.
