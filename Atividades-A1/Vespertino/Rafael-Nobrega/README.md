@@ -122,6 +122,7 @@ Resposta: 204 NO CONTENT
 é um código executado antes que uma requisição seja concluída, agindo "na borda" (edge) antes de renderizar páginas ou acessar rotas
 
 A aplicação possui um middleware que registra no console todas as requisições realizadas na API.
+
 ## Testes
 
 Os testes foram realizados utilizando o Insomnia.
