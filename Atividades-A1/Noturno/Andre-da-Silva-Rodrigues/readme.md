@@ -1,7 +1,6 @@
 # API de Alunos
 
-API REST simples construída com Node.js e Express para gerenciar uma lista de alunos em memória.
-
+API REST simples construída com Node.js e Express para gerenciar uma lista de alunos em memória. Nivel 1
 
 ## Tecnologias
 
