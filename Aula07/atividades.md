@@ -13,7 +13,7 @@ Sua tarefa é analisar o código-fonte da API, identificar as violações dos pr
 ## Instruções para Entrega
 
 - **Formato:** Enviar um arquivo `.zip` contendo o projeto (incluindo `server.js` e `package.json`).
-- **E-mail para:** `taguardado.net@gmail.com`
+- **E-mail para:** `janei@taguardado.net`
 - **Assunto do E-mail:** `Aula 07 - Atividade RESTful - [Seu Nome Completo] - [Vespertino ou Noturno]`
 - **Prazo:** Final da aula de hoje.
 
