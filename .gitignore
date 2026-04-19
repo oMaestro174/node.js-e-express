@@ -23,9 +23,7 @@ npm-debug.log*
 # VS Code Workspace file
 *.code-workspace
 
-# Aulas em desenvolvimento
-dicas.md
-pool.md
+
 
 
 
