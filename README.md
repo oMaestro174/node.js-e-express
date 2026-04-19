@@ -1,4 +1,6 @@
 # Curso: Desenvolvimento de APIs com Node.js e Express
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 
 Bem-vindo ao repositório oficial do curso de desenvolvimento de APIs com Node.js! Este espaço contém todo o material, códigos, laboratórios e gabaritos que utilizamos ao longo das aulas. O objetivo é fornecer um guia completo para você estudar, praticar e aprofundar seus conhecimentos.
 
@@ -83,3 +85,30 @@ Para consolidar todo o aprendizado, recomendamos fortemente que você siga o **[
 ---
 
 Bons estudos e feliz codificação!
+
+---
+
+# Licença
+
+Este projeto está licenciado sob **Creative Commons Attribution–NonCommercial–ShareAlike 4.0 International (CC BY‑NC‑SA 4.0)**.
+
+## O que você PODE fazer
+- ✔ Usar o conteúdo do projeto
+- ✔ Modificar, remixar e adaptar
+- ✔ Compartilhar com outras pessoas
+- ✔ Criar derivados
+
+## O que você NÃO PODE fazer
+- ❌ Usar para fins comerciais  
+  (qualquer uso que gere dinheiro direta ou indiretamente)
+- ❌ Distribuir versões modificadas com outra licença
+- ❌ Remover a atribuição ao autor original
+
+## Condições obrigatórias
+- **Atribuição:** você deve creditar o autor original.
+- **Não Comercial:** uso apenas para fins não comerciais.
+- **Compartilha Igual:** obras derivadas devem usar a mesma licença.
+
+## Link da licença
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
